@@ -1,11 +1,17 @@
-import React from "react";
+import { useState } from "react";
 import { MapContainer, TileLayer, Popup, Marker, GeoJSON } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import batasWilayah from "../../data/batas-administrasi.json";
 
 function MapComponent() {
+  const [showBoundary, setShowBoundary] = useState(true);
+
+  const toggleBoundary = () => {
+    setShowBoundary(!showBoundary);
+  };
+
   return (
-    <div>
+    <div className="p-10">
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <MapContainer
         center={[-6.905977, 107.613144]}
@@ -22,8 +28,19 @@ function MapComponent() {
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
         </Marker>
-        {batasWilayah && <GeoJSON data={batasWilayah} />}
+        {showBoundary && <GeoJSON data={batasWilayah} />}
       </MapContainer>
+      <div className="mt-4">
+        <input
+          type="checkbox"
+          id="showBoundary"
+          name="showBoundary"
+          checked={showBoundary}
+          onChange={toggleBoundary}
+          className="mr-2"
+        />
+        <label htmlFor="showBoundary">Tampilkan Batas Wilayah</label>
+      </div>
     </div>
   );
 }
