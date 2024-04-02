@@ -1,24 +1,36 @@
-import React from "react";
-import { MapContainer, TileLayer, Popup, Marker, GeoJSON } from "react-leaflet";
-import "./App.css";
-import "leaflet/dist/leaflet.css";
-import batasWilayah from "./data/batas-administrasi.json"
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+// import SidebarComponent from "./components/Sidebar.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import Layout from "./components/Layout.jsx";
+import MappingAreaPage from "./pages/MappingAreaPage.jsx";
+// import LoginPage from "./pages/LoginPage.jsx";
+// import AdminPage from "./pages/AdminPage.jsx";
+// import MappingAreaPage from "./pages/MappingAreaPage.jsx";
+// import GWRPage from "./pages/GWRPage.jsx";
+
+const router = createBrowserRouter([
+  {
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "/mapping-area",
+        element: <MappingAreaPage />,
+      },
+    ],
+  },
+]);
 
 function App() {
   return (
     <>
-      <MapContainer center={[	-6.905977, 107.613144]} zoom={12} scrollWheelZoom={true}>
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={[-6.905977, 107.613144]}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
-        <GeoJSON data={batasWilayah}/>
-      </MapContainer>
+      <RouterProvider router={router} />
     </>
   );
 }
