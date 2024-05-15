@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage.jsx";
 import Layout from "./components/Layout.jsx";
 import MappingAreaPage from "./pages/MappingAreaPage.jsx";
 import GWRPage from "./pages/GWRPage.jsx";
+import PetaBandung from "./pages/KotaBandungMap.jsx"
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/gwr-page",
         element: <GWRPage />,
+      },
+      {
+        path: "/peta-bandung",
+        element: <PetaBandung />,
       },
     ],
   },

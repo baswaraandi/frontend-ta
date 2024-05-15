@@ -45,11 +45,20 @@ function SidebarComponent() {
         </MenuItem>
         <MenuItem className="py-2 items-center">
           <Link
+            to="/peta-bandung"
+            className=" py-2 text-sm hover:text-blue-500 flex items-center w-full"
+          >
+            <MapPin className="mr-2" size={16} />
+            {isSidebarOpen && <span className="ml-2 font-medium">Peta Kota Bandung</span>}
+          </Link>
+        </MenuItem>
+        <MenuItem className="py-2 items-center">
+          <Link
             to="/mapping-area"
             className=" py-2 text-sm hover:text-blue-500 flex items-center w-full"
           >
             <MapPin className="mr-2" size={16} />
-            {isSidebarOpen && <span className="ml-2 font-medium">Mapping Area</span>}
+            {isSidebarOpen && <span className="ml-2 font-medium">Peta Kendaraan</span>}
           </Link>
         </MenuItem>
         <MenuItem className="py-2 items-center">
@@ -58,7 +67,7 @@ function SidebarComponent() {
             className=" py-2 text-sm hover:text-blue-500 flex items-center w-full"
           >
             <Activity className="mr-2" size={16} />
-            {isSidebarOpen && <span className="ml-2 font-medium">GWR Page</span>}
+            {isSidebarOpen && <span className="ml-2 font-medium">Analisis Model</span>}
           </Link>
         </MenuItem>
       </Menu>
