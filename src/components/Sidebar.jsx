@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Link } from "react-router-dom";
 import {
@@ -8,80 +8,90 @@ import {
   Activity,
   X,
   Menu as MenuIcon,
+  LogOut,
 } from "react-feather";
+import { AuthContext } from "./Auth/AuthContext";
+import { UserIcon } from "lucide-react";
 
 function SidebarComponent() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [user, setUser] = useState({
-    name: "Andyka Baswara",
-    email: "baswaraandi@gmail.com",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-  });
+  const { user, logout } = useContext(AuthContext);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  console.log(user);
   return (
     <Sidebar collapsed={!isSidebarOpen}>
       <Menu className="bg-blue-950 text-white h-full shadow-xl">
-        <MenuItem className="py-2 items-center pt-12 w-full">
-          <Link
-            to="/"
-            className="py-2 text-sm hover:text-blue-500 flex items-center w-full"
-          >
+        <MenuItem
+          className="py-2 items-center pt-12 w-full"
+          component={<Link to="/" />}
+        >
+          <div className="py-2 text-sm hover:text-blue-500 flex items-center w-full">
             <Home className="mr-2" size={16} />
             {isSidebarOpen && <span className="ml-2 font-medium">Home</span>}
-          </Link>
+          </div>
         </MenuItem>
-        <MenuItem className="py-2 items-center">
-          <Link
-            to="/admin"
-            className=" py-2 text-sm hover:text-blue-500 flex items-center w-full"
-          >
+        <MenuItem
+          className="py-2 items-center"
+          component={<Link to="/admin" />}
+        >
+          <div className=" py-2 text-sm hover:text-blue-500 flex items-center w-full">
             <User className="mr-2" size={16} />
             {isSidebarOpen && <span className="ml-2 font-medium">Admin</span>}
-          </Link>
+          </div>
         </MenuItem>
-        <MenuItem className="py-2 items-center">
-          <Link
-            to="/peta-bandung"
-            className=" py-2 text-sm hover:text-blue-500 flex items-center w-full"
-          >
+        <MenuItem
+          className="py-2 items-center"
+          component={<Link to="/peta-bandung" />}
+        >
+          <div className=" py-2 text-sm hover:text-blue-500 flex items-center w-full">
             <MapPin className="mr-2" size={16} />
-            {isSidebarOpen && <span className="ml-2 font-medium">Peta Kota Bandung</span>}
-          </Link>
+            {isSidebarOpen && (
+              <span className="ml-2 font-medium">Peta Kota Bandung</span>
+            )}
+          </div>
         </MenuItem>
-        <MenuItem className="py-2 items-center">
-          <Link
-            to="/mapping-area"
-            className=" py-2 text-sm hover:text-blue-500 flex items-center w-full"
-          >
+        <MenuItem
+          className="py-2 items-center"
+          component={<Link to="/mapping-area" />}
+        >
+          <div className=" py-2 text-sm hover:text-blue-500 flex items-center w-full">
             <MapPin className="mr-2" size={16} />
-            {isSidebarOpen && <span className="ml-2 font-medium">Peta Kendaraan</span>}
-          </Link>
+            {isSidebarOpen && (
+              <span className="ml-2 font-medium">Peta Kendaraan</span>
+            )}
+          </div>
         </MenuItem>
-        <MenuItem className="py-2 items-center">
-          <Link
-            to="/gwr-page"
-            className=" py-2 text-sm hover:text-blue-500 flex items-center w-full"
-          >
+        <MenuItem
+          className="py-2 items-center"
+          component={<Link to="/gwr=page" />}
+        >
+          <div className=" py-2 text-sm hover:text-blue-500 flex items-center w-full">
             <Activity className="mr-2" size={16} />
-            {isSidebarOpen && <span className="ml-2 font-medium">Analisis Model</span>}
-          </Link>
+            {isSidebarOpen && (
+              <span className="ml-2 font-medium">Analisis Model</span>
+            )}
+          </div>
         </MenuItem>
       </Menu>
       <div className="absolute bottom-0 w-full px-4 py-2 bg-gray-200">
-        <div className="flex items-center">
-          <img
-            src={user.avatar}
-            alt={user.name}
-            className="w-8 h-8 rounded-full mr-2"
-          />
+        <div className="flex items-center justify-between">
+          <UserIcon/>
           <div>
-            <p className="text-sm font-semibold">{user.name}</p>
+            <p className="text-sm font-semibold">{user.fullname}</p>
             <p className="text-xs">{user.email}</p>
           </div>
+          <button
+            className=""
+            onClick={() => {
+              logout();
+            }}
+          >
+            <LogOut></LogOut>
+          </button>
         </div>
       </div>
       <button

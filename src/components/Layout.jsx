@@ -1,7 +1,14 @@
+import { useContext } from "react";
 import SidebarComponent from "./Sidebar";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import { AuthContext } from "./Auth/AuthContext";
 
 function Layout() {
+  const {user} = useContext(AuthContext);
+  if (!user) {
+    return <Navigate to="/login"/>
+  }
+
   return (
     <div className="flex h-screen">
       <SidebarComponent />
