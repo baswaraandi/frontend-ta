@@ -35,6 +35,15 @@ function SidebarComponent() {
           </div>
         </MenuItem>
         <MenuItem
+          className="py-2 items-center w-full hidden"
+          component={<Link to="/user-management" />}
+        >
+          <div className="py-2 text-sm hover:text-blue-500 flex items-center w-full">
+            <Home className="mr-2" size={16} />
+            {isSidebarOpen && <span className="ml-2 font-medium">User Management</span>}
+          </div>
+        </MenuItem>
+        <MenuItem
           className="py-2 items-center"
           component={<Link to="/admin" />}
         >
@@ -67,7 +76,7 @@ function SidebarComponent() {
         </MenuItem>
         <MenuItem
           className="py-2 items-center"
-          component={<Link to="/gwr=page" />}
+          component={<Link to="/gwr-page" />}
         >
           <div className=" py-2 text-sm hover:text-blue-500 flex items-center w-full">
             <Activity className="mr-2" size={16} />

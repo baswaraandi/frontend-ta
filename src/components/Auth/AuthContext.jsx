@@ -12,12 +12,12 @@ export const AuthContextProvider = ({ children }) => {
   const login = (user, token) => {
     setUser(user);
     Cookies.set("user", JSON.stringify(user), {
-      expires: 7,
+      // expires: 7,
       secure: true,
       sameSite: "None",
     });
     Cookies.set("token", token, {
-      expires: 7,
+      // expires: 7,
       secure: true,
       sameSite: "None",
     });

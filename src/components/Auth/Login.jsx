@@ -1,7 +1,10 @@
 import { useContext, useState } from "react";
 import backendApi from "../../utils/api-config";
 import { AuthContext } from "./AuthContext";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -12,9 +15,8 @@ function Login() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      // Handle form submission
       const response = await backendApi.post("/login", { email, password });
-      if (response.status == 200) {
+      if (response.status === 200) {
         login(
           {
             email: response.data.data.email,
@@ -22,14 +24,18 @@ function Login() {
           },
           response.data.data.token
         );
+        toast.success("Login Success !", {
+          position: "top-right",
+        });
         navigate("/");
       }
       console.log(response.data.data);
     } catch (error) {
       console.log("Error! Login failed.");
+      toast.error("Invalid Email or Password!", {
+        position: "top-right",
+      });
     }
-    // console.log("Email:", email);
-    // console.log("Password:", password);
   };
 
   return (
@@ -76,6 +82,12 @@ function Login() {
             Login
           </button>
         </form>
+        <p className="mt-4 text-center">
+          Belum punya akun?{" "}
+          <Link to="/register" className="text-blue-500 hover:underline">
+            Daftar di sini
+          </Link>
+        </p>
       </div>
     </div>
   );

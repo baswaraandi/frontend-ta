@@ -1,5 +1,5 @@
 function GwrComponent() {
-  return <div>Halaman Analisi GWR</div>;
+  return <div>Halaman Analisis GWR</div>;
 }
 
 export default GwrComponent;
