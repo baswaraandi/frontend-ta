@@ -58,19 +58,35 @@ function Dashboard() {
 
   return (
     <div>
-      <div className="bg-white p-4 rounded shadow-md mx-4 max-w-3xl">
+      <div className="bg-white p-4 rounded shadow-md mx-4 max-w-6xl">
         <h2 className="text-xl font-bold mb-4">DASHBOARD ADMIN</h2>
-        <div className="max-w-3xl">
+        <div className="">
           <Line data={data} options={options} />
         </div>
       </div>
-      <div className="p-4">
+      <div className="p-4 flex justify-between max-w-3xl">
         <div className="mt-4">
           <a
             href="/user-management"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-blue-950 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
           >
             Go to User Management
+          </a>
+        </div>
+        <div className="mt-4">
+          <a
+            href="/analisis-management"
+            className="bg-blue-950 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
+          >
+            Go to Analisis Management
+          </a>
+        </div>
+        <div className="mt-4">
+          <a
+            href="/kendaraan-management"
+            className="bg-blue-950 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
+          >
+            Go to Kendaraan Management
           </a>
         </div>
       </div>

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import backendApi from "../../utils/api-config";
 import Cookies from "js-cookie";
-import { Edit2, Plus, Trash } from "react-feather";
+import { Edit2, Trash } from "react-feather";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import { useNavigate } from "react-router-dom";
 
 function UserManagement() {
@@ -63,6 +65,9 @@ function UserManagement() {
         }
       );
       // console.log("Berhasil Update");
+      toast.success("Data Updated !", {
+        position: "top-right",
+      });
       setSelectedUser(null);
       getUsers();
     } catch (error) {
@@ -83,6 +88,9 @@ function UserManagement() {
         },
       });
       getUsers();
+      toast.error("Data Deleted !", {
+        position: "top-right",
+      });
     } catch (error) {
       console.log(error);
     }
@@ -91,9 +99,6 @@ function UserManagement() {
   return (
     <div className="bg-white p-4 rounded shadow-md mx-4 max-w-6xl">
       <h2 className="text-xl font-bold mb-4">Manajemen Pengguna</h2>
-      <div className="p-4 border-slate-600 border-2 rounded-lg max-w-16">
-        <Plus onClick={() => setSelectedUser(null)}></Plus>
-      </div>
       {loading ? (
         <p>Loading users...</p>
       ) : (
@@ -187,34 +192,58 @@ function UserManagement() {
               </button>
             </form>
           ) : (
-            <table className="w-full justify-center divide-y">
-              <thead>
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
                 <tr>
-                  <th className="p-2">ID</th>
-                  <th className="p-2">Username</th>
-                  <th className="p-2">Password</th>
-                  <th className="p-2">FullName</th>
-                  <th className="p-2">Email</th>
-                  <th className="p-2">Role</th>
-                  <th className="p-2">Action</th>
+                  <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
+                    ID
+                  </th>
+                  <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
+                    Username
+                  </th>
+                  <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
+                    FullName
+                  </th>
+                  <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
+                    Email
+                  </th>
+                  <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
+                    Role
+                  </th>
+                  <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
+                    Action
+                  </th>
                 </tr>
               </thead>
-              <tbody className="text-center divide-y">
+              <tbody className="bg-white divide-y divide-gray-200 text-center">
                 {Array.isArray(users) &&
                   users.map((user) => (
                     <tr key={user.id}>
-                      <td className="p-2">{user.id}</td>
-                      <td className="p-2">{user.username}</td>
-                      <td className="p-2">-</td>
-                      <td className="p-2">{user.fullname}</td>
-                      <td className="p-2">{user.email}</td>
-                      <td className="p-2">{user.role}</td>
-                      <td className="p-2 flex justify-between">
-                        <button onClick={() => setSelectedUser(user)}>
-                          <Edit2></Edit2>
+                      <td className="p-4 text-sm text-slate-800">{user.id}</td>
+                      <td className="p-4 text-sm text-slate-800">
+                        {user.username}
+                      </td>
+                      <td className="p-4 text-sm text-slate-800">
+                        {user.fullname}
+                      </td>
+                      <td className="p-4 text-sm text-slate-800">
+                        {user.email}
+                      </td>
+                      <td className="p-4 text-sm text-slate-800">
+                        {user.role}
+                      </td>
+                      <td className="p-4 flex justify-around items-center">
+                        <button
+                          className="text-blue-500 hover:text-blue-700"
+                          onClick={() => setSelectedUser(user)}
+                        >
+                          <Edit2 className="h-5 w-5" />
                         </button>
-                        <button onClick={() => deleteUsers(user.id)}>
-                          <Trash></Trash>
+                        <button
+                          className="text-red-500 hover:text-red-700"
+                          onClick={() => deleteUsers(user.id)}
+                        >
+                          <Trash className="h-5 w-5" />
                         </button>
                       </td>
                     </tr>

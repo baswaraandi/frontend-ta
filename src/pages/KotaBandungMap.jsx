@@ -1,12 +1,11 @@
-import BandungMapComponent from "../components/PetaKota/KotaBandung"
+import BandungMapComponent from "../components/PetaKota/KotaBandung";
 
 function KotaBandungMap() {
   return (
     <div>
-      <h1>Halaman Peta Kota Bandung</h1>
-      <BandungMapComponent/>
+      <BandungMapComponent />
     </div>
-  )
+  );
 }
 
-export default KotaBandungMap
+export default KotaBandungMap;

@@ -8,6 +8,8 @@ import Login from "./components/Auth/Login.jsx";
 import Dashboard from "./components/Admin/Dashboard.jsx";
 import Register from "./components/Auth/Register.jsx";
 import UserManagement from "./components/Admin/UserManagement.jsx";
+import KendaraanManagement from "./components/Admin/KendaraanManagement.jsx";
+import AnalisisManagement from "./components/Admin/AnalisisManagement.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
       {
         element: <UserManagement />,
         path: "/user-management",
+      },
+      {
+        element: <KendaraanManagement />,
+        path: "/kendaraan-management",
+      },
+      {
+        element: <AnalisisManagement />,
+        path: "/analisis-management",
       },
       {
         path: "/admin",
