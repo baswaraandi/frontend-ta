@@ -10,7 +10,7 @@ function Layout() {
   }
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen ">
       <SidebarComponent />
       <div className="flex-grow">
         <Outlet />
