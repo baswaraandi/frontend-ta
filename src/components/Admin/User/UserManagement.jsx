@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import backendApi from "../../utils/api-config";
+import backendApi from "../../../utils/api-config";
 import Cookies from "js-cookie";
 import { Edit2, Trash } from "react-feather";
 import { toast } from "react-toastify";
