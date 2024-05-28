@@ -54,7 +54,7 @@ function AnalisisManagement() {
                 Long
               </th>
               <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                Y
+                Y1
               </th>
               <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
                 X1

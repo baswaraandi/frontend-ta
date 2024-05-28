@@ -4,58 +4,59 @@ import "react-toastify/dist/ReactToastify.css";
 import backendApi from "../../../utils/api-config";
 import { useState } from "react";
 
-function EditKendaraanManagement({ onUpdateSuccess, value }) {
-  const [selectedKendaraan, setselectedKendaraan] = useState(value);
+function AddKendaraanManagement({ onAddSuccess }) {
+  const [newKendaraan, setNewKendaraan] = useState({
+    Nopol: "",
+    Nama: "",
+    Alamat: "",
+    Kab_Kota: "",
+    Kecamatan: "",
+    Merk: "",
+    Type: "",
+    Tipe: "",
+    Modell: "",
+    Jenis: "",
+    Model: "",
+    Tahun: "",
+    CC: "",
+    No_Ka: "",
+    No_Mesin: "",
+    Warna: "",
+  });
 
-  const updateKendaraan = async (e) => {
+  const addKendaraan = async (e) => {
     e.preventDefault();
     try {
       const token = Cookies.get("token");
       if (!token) {
         throw new Error("Token is not available");
       }
-      await backendApi.patch(
-        `/kendaraan/${selectedKendaraan.id}`,
-        {
-          BLN_THN: selectedKendaraan.BLN_THN,
-          Nopol: selectedKendaraan.Nopol,
-          Nama: selectedKendaraan.Nama,
-          Alamat: selectedKendaraan.Alamat,
-          Kab_Kota: selectedKendaraan.Kab_Kota,
-          Kecamatan: selectedKendaraan.Kecamatan,
-          Merk: selectedKendaraan.Merk,
-          Type: selectedKendaraan.Type,
-          Tipe: selectedKendaraan.Tipe,
-          Modell: selectedKendaraan.Modell,
-          Jenis: selectedKendaraan.Jenis,
-          Model: selectedKendaraan.x,
-          Tahun: selectedKendaraan.Tahun,
-          CC: selectedKendaraan.CC,
-          No_Ka: selectedKendaraan.No_Ka,
-          No_Mesin: selectedKendaraan.x,
-          Warna: selectedKendaraan.Warna,
+
+      const data = newKendaraan;
+
+      await backendApi.post("/kendaraan", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      // console.log("Berhasil Update");
-      toast.success(`Data ${selectedKendaraan.Nopol} Updated!`, {
+      });
+
+      toast.success(`Data ${newKendaraan.Nopol} Added!`, {
         position: "top-right",
       });
-      onUpdateSuccess();
+
+      onAddSuccess();
     } catch (error) {
-      console.error("Error updating user:", error);
+      console.error("Error adding kendaraan:", error);
+      toast.error("Failed to add kendaraan. Please try again.", {
+        position: "top-right",
+      });
     }
   };
 
   return (
     <div>
-      {" "}
-      <form onSubmit={updateKendaraan} className="grid grid-cols-2 gap-4">
+      <form onSubmit={addKendaraan} className="grid grid-cols-2 gap-4">
         <div className="mb-2 col-span-2">
           <label htmlFor="bulan" className="block text-gray-700 font-bold mb-2">
             Bulan
@@ -63,10 +64,10 @@ function EditKendaraanManagement({ onUpdateSuccess, value }) {
           <input
             type="text"
             id="bulan"
-            value={selectedKendaraan.BLN_THN}
+            value={newKendaraan.BLN_THN}
             onChange={(e) =>
-              setselectedKendaraan({
-                ...selectedKendaraan,
+              setNewKendaraan({
+                ...newKendaraan,
                 BLN_THN: e.target.value,
               })
             }
@@ -80,10 +81,10 @@ function EditKendaraanManagement({ onUpdateSuccess, value }) {
           <input
             type="text"
             id="nopol"
-            value={selectedKendaraan.Nopol}
+            value={newKendaraan.Nopol}
             onChange={(e) =>
-              setselectedKendaraan({
-                ...selectedKendaraan,
+              setNewKendaraan({
+                ...newKendaraan,
                 Nopol: e.target.value,
               })
             }
@@ -97,10 +98,10 @@ function EditKendaraanManagement({ onUpdateSuccess, value }) {
           <input
             type="Nama"
             id="Nama"
-            value={selectedKendaraan.Nama}
+            value={newKendaraan.Nama}
             onChange={(e) =>
-              setselectedKendaraan({
-                ...selectedKendaraan,
+              setNewKendaraan({
+                ...newKendaraan,
                 Nama: e.target.value,
               })
             }
@@ -117,10 +118,10 @@ function EditKendaraanManagement({ onUpdateSuccess, value }) {
           <input
             type="Alamat"
             id="Alamat"
-            value={selectedKendaraan.Alamat}
+            value={newKendaraan.Alamat}
             onChange={(e) =>
-              setselectedKendaraan({
-                ...selectedKendaraan,
+              setNewKendaraan({
+                ...newKendaraan,
                 Alamat: e.target.value,
               })
             }
@@ -137,10 +138,10 @@ function EditKendaraanManagement({ onUpdateSuccess, value }) {
           <input
             type="Kab_Kota"
             id="Kab_Kota"
-            value={selectedKendaraan.Kab_Kota}
+            value={newKendaraan.Kab_Kota}
             onChange={(e) =>
-              setselectedKendaraan({
-                ...selectedKendaraan,
+              setNewKendaraan({
+                ...newKendaraan,
                 Kab_Kota: e.target.value,
               })
             }
@@ -157,10 +158,10 @@ function EditKendaraanManagement({ onUpdateSuccess, value }) {
           <input
             type="Kecamatan"
             id="Kecamatan"
-            value={selectedKendaraan.Kecamatan}
+            value={newKendaraan.Kecamatan}
             onChange={(e) =>
-              setselectedKendaraan({
-                ...selectedKendaraan,
+              setNewKendaraan({
+                ...newKendaraan,
                 Kecamatan: e.target.value,
               })
             }
@@ -174,10 +175,10 @@ function EditKendaraanManagement({ onUpdateSuccess, value }) {
           <input
             type="Merk"
             id="Merk"
-            value={selectedKendaraan.Merk}
+            value={newKendaraan.Merk}
             onChange={(e) =>
-              setselectedKendaraan({
-                ...selectedKendaraan,
+              setNewKendaraan({
+                ...newKendaraan,
                 Merk: e.target.value,
               })
             }
@@ -191,10 +192,10 @@ function EditKendaraanManagement({ onUpdateSuccess, value }) {
           <input
             type="Type"
             id="Type"
-            value={selectedKendaraan.Type}
+            value={newKendaraan.Type}
             onChange={(e) =>
-              setselectedKendaraan({
-                ...selectedKendaraan,
+              setNewKendaraan({
+                ...newKendaraan,
                 Type: e.target.value,
               })
             }
@@ -208,10 +209,10 @@ function EditKendaraanManagement({ onUpdateSuccess, value }) {
           <input
             type="Tipe"
             id="Tipe"
-            value={selectedKendaraan.Tipe}
+            value={newKendaraan.Tipe}
             onChange={(e) =>
-              setselectedKendaraan({
-                ...selectedKendaraan,
+              setNewKendaraan({
+                ...newKendaraan,
                 Tipe: e.target.value,
               })
             }
@@ -228,10 +229,10 @@ function EditKendaraanManagement({ onUpdateSuccess, value }) {
           <input
             type="Modell"
             id="Modell"
-            value={selectedKendaraan.Modell}
+            value={newKendaraan.Modell}
             onChange={(e) =>
-              setselectedKendaraan({
-                ...selectedKendaraan,
+              setNewKendaraan({
+                ...newKendaraan,
                 Modell: e.target.value,
               })
             }
@@ -245,10 +246,10 @@ function EditKendaraanManagement({ onUpdateSuccess, value }) {
           <input
             type="Jenis"
             id="Jenis"
-            value={selectedKendaraan.Jenis}
+            value={newKendaraan.Jenis}
             onChange={(e) =>
-              setselectedKendaraan({
-                ...selectedKendaraan,
+              setNewKendaraan({
+                ...newKendaraan,
                 Jenis: e.target.value,
               })
             }
@@ -262,10 +263,10 @@ function EditKendaraanManagement({ onUpdateSuccess, value }) {
           <input
             type="Model"
             id="Model"
-            value={selectedKendaraan.Model}
+            value={newKendaraan.Model}
             onChange={(e) =>
-              setselectedKendaraan({
-                ...selectedKendaraan,
+              setNewKendaraan({
+                ...newKendaraan,
                 Model: e.target.value,
               })
             }
@@ -279,10 +280,10 @@ function EditKendaraanManagement({ onUpdateSuccess, value }) {
           <input
             type="Tahun"
             id="Tahun"
-            value={selectedKendaraan.Tahun}
+            value={newKendaraan.Tahun}
             onChange={(e) =>
-              setselectedKendaraan({
-                ...selectedKendaraan,
+              setNewKendaraan({
+                ...newKendaraan,
                 Tahun: e.target.value,
               })
             }
@@ -296,10 +297,10 @@ function EditKendaraanManagement({ onUpdateSuccess, value }) {
           <input
             type="CC"
             id="CC"
-            value={selectedKendaraan.CC}
+            value={newKendaraan.CC}
             onChange={(e) =>
-              setselectedKendaraan({
-                ...selectedKendaraan,
+              setNewKendaraan({
+                ...newKendaraan,
                 CC: e.target.value,
               })
             }
@@ -313,10 +314,10 @@ function EditKendaraanManagement({ onUpdateSuccess, value }) {
           <input
             type="No_Ka"
             id="No_Ka"
-            value={selectedKendaraan.No_Ka}
+            value={newKendaraan.No_Ka}
             onChange={(e) =>
-              setselectedKendaraan({
-                ...selectedKendaraan,
+              setNewKendaraan({
+                ...newKendaraan,
                 No_Ka: e.target.value,
               })
             }
@@ -333,10 +334,10 @@ function EditKendaraanManagement({ onUpdateSuccess, value }) {
           <input
             type="No_Mesin"
             id="No_Mesin"
-            value={selectedKendaraan.No_Mesin}
+            value={newKendaraan.No_Mesin}
             onChange={(e) =>
-              setselectedKendaraan({
-                ...selectedKendaraan,
+              setNewKendaraan({
+                ...newKendaraan,
                 No_Mesin: e.target.value,
               })
             }
@@ -350,10 +351,10 @@ function EditKendaraanManagement({ onUpdateSuccess, value }) {
           <input
             type="Warna"
             id="Warna"
-            value={selectedKendaraan.Warna}
+            value={newKendaraan.Warna}
             onChange={(e) =>
-              setselectedKendaraan({
-                ...selectedKendaraan,
+              setNewKendaraan({
+                ...newKendaraan,
                 Warna: e.target.value,
               })
             }
@@ -365,7 +366,7 @@ function EditKendaraanManagement({ onUpdateSuccess, value }) {
             type="submit"
             className="bg-blue-950 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
           >
-            Update Data Kendaraan
+            Tambah Kendaraan
           </button>
         </div>
       </form>
@@ -373,4 +374,4 @@ function EditKendaraanManagement({ onUpdateSuccess, value }) {
   );
 }
 
-export default EditKendaraanManagement;
+export default AddKendaraanManagement;

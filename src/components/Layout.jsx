@@ -12,7 +12,7 @@ function Layout() {
   return (
     <div className="flex h-screen w-screen">
       <SidebarComponent />
-      <div className="flex-grow">
+      <div className="flex-grow pt-4">
         <Outlet />
       </div>
     </div>

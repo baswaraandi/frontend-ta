@@ -5,7 +5,7 @@ import { Edit2, Trash } from "react-feather";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import EditKendaraanManagement from "./EditKendaraanManagement";
-// import { useNavigate } from "react-router-dom";
+import AddKendaraanManagement from "./AddKendaraanManagement";
 
 function KendaraanManagement() {
   const [kendaraan, setKendaraan] = useState([]);
@@ -14,6 +14,7 @@ function KendaraanManagement() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [search, setSearch] = useState("");
+  const [showAddForm, setShowAddForm] = useState(false);
 
   useEffect(() => {
     getKendaraan(page, 20);
@@ -36,7 +37,7 @@ function KendaraanManagement() {
           limit: limit,
         },
       });
-      setKendaraan(response.data.data); 
+      setKendaraan(response.data.data);
       setTotalPages(response.data.totalPages);
       setLoading(false);
     } catch (error) {
@@ -48,6 +49,10 @@ function KendaraanManagement() {
   const onUpdateSuccess = () => {
     setselectedKendaraan(null);
     getKendaraan();
+  };
+
+  const onAddSuccess = () => {
+    setShowAddForm(false);
   };
 
   const deletekendaraan = async (id) => {
@@ -88,7 +93,7 @@ function KendaraanManagement() {
   };
 
   return (
-    <div className="bg-white p-4 rounded shadow-md mx-4 max-w-screen-2xl">
+    <div className="bg-white p-4 rounded shadow-md mx-4 max-w-screen-2xl border border-blue-950">
       <h2 className="text-xl font-bold mb-2">Manajemen Kendaraan</h2>
       {loading ? (
         <p>Loading kendaraan...</p>
@@ -99,24 +104,51 @@ function KendaraanManagement() {
               onUpdateSuccess={onUpdateSuccess}
               value={selectedKendaraan}
             />
+          ) : showAddForm ? (
+            <AddKendaraanManagement onAddSuccess={onAddSuccess} />
           ) : (
             <>
-              <form onSubmit={handleSearchSubmit} className="mb-4">
-                <input
-                  type="text"
-                  value={search}
-                  onChange={handleSearchChange}
-                  className="px-4 py-2 border rounded-md w-full"
-                  placeholder="Search by type"
-                />
-                <button
-                  type="submit"
-                  className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
+              <div className="flex items-center">
+                <form
+                  onSubmit={handleSearchSubmit}
+                  className="mb-4 flex items-center max-w-96"
                 >
-                  Search
+                  <input
+                    type="text"
+                    value={search}
+                    onChange={handleSearchChange}
+                    className="px-4 py-2 border rounded-md w-full"
+                    placeholder="Search by type"
+                  />
+                  <button
+                    type="submit"
+                    className="ml-2 px-4 py-2 bg-blue-950 text-white rounded-md hover:bg-blue-500"
+                  >
+                    Search
+                  </button>
+                </form>
+                <button
+                  className="flex items-center justify-center w-10 h-10 bg-blue-950 text-white rounded-full hover:bg-blue-700 focus:outline-none mb-4 ml-2"
+                  aria-label="Add"
+                  onClick={() => setShowAddForm(true)}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 4v16m8-8H4"
+                    />
+                  </svg>
                 </button>
-              </form>
-              <div className="max-h-[800px] overflow-y-auto">
+              </div>
+              <div className="max-h-[700px] overflow-y-auto">
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50 sticky top-0">
                     <tr>
