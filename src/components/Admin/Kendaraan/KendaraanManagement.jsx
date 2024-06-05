@@ -88,7 +88,7 @@ function KendaraanManagement() {
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    setPage(1); // Reset to first page when searching
+    setPage(3360); // Reset to first page when searching
     getKendaraan(1, 10, search);
   };
 

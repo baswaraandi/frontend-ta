@@ -11,8 +11,14 @@ import UserManagement from "./components/Admin/User/UserManagement.jsx";
 import KendaraanManagement from "./components/Admin/Kendaraan/KendaraanManagement.jsx";
 import AnalisisManagement from "./components/Admin/Analisis/AnalisisManagement.jsx";
 import EditKendaraanManagement from "./components/Admin/Kendaraan/EditKendaraanManagement.jsx";
+import IsAdmin from "./components/Admin/IsAdmin.jsx";
+import GeoMap from "./pages/GeoMap.jsx";
 
 const router = createBrowserRouter([
+  {
+    element: <GeoMap />,
+    path: "/coba",
+  },
   {
     element: <Login />,
     path: "/login",
@@ -29,24 +35,29 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        element: <UserManagement />,
-        path: "/user-management",
-      },
-      {
-        element: <KendaraanManagement />,
-        path: "/kendaraan-management",
-      },
-      {
-        element: <EditKendaraanManagement />,
-        path: "/kendaraan-management/:id",
-      },
-      {
-        element: <AnalisisManagement />,
-        path: "/analisis-management",
-      },
-      {
-        path: "/admin",
-        element: <Dashboard />,
+        element: <IsAdmin />,
+        children: [
+          {
+            element: <UserManagement />,
+            path: "/user-management",
+          },
+          {
+            element: <KendaraanManagement />,
+            path: "/kendaraan-management",
+          },
+          {
+            element: <EditKendaraanManagement />,
+            path: "/kendaraan-management/:id",
+          },
+          {
+            element: <AnalisisManagement />,
+            path: "/analisis-management",
+          },
+          {
+            path: "/admin",
+            element: <Dashboard />,
+          },
+        ],
       },
       {
         path: "/mapping-area",

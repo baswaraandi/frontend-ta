@@ -10,9 +10,9 @@ function Layout() {
   }
 
   return (
-    <div className="flex h-screen w-screen">
+    <div className="flex h-screen w-screen overflow-hidden">
       <SidebarComponent />
-      <div className="flex-grow pt-4">
+      <div className="flex-grow pt-4 overflow-x-auto">
         <Outlet />
       </div>
     </div>

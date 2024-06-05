@@ -32,7 +32,7 @@ function AnalisisManagement() {
   };
 
   return (
-    <div className="bg-white p-4 rounded shadow-md">
+    <div className="bg-white p-4 rounded shadow-md m-4">
       <div>
         <h2 className="text-xl font-bold mb-4">Data Analisis</h2>
         <p className="mb-4">
@@ -40,7 +40,7 @@ function AnalisisManagement() {
           Januari sampai September 2023
         </p>
       </div>
-      <div className="max-h-[600px] overflow-y-auto overflow-x-auto">
+      <div className="max-h-screen overflow-y-auto overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50 sticky top-0">
             <tr>
