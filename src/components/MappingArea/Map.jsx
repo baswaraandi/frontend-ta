@@ -13,6 +13,10 @@ import backendApi from "../../utils/api-config";
 import Cookies from "js-cookie";
 import chroma from "chroma-js";
 import VehiclePopup from "./VehiclePopUp";
+import { Icon } from "leaflet";
+// L.noConflict();
+import agyaIcon from "../../../assets/Kendaraan/Agya.png";
+import yarissIcon from "../../../assets/Kendaraan/Yaris Cross.png";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale);
 
@@ -40,6 +44,29 @@ const vehicles = [
   "Yaris Cross",
   "Zenix",
 ];
+
+const vehicleIcons = {
+  "AGYA": new Icon({
+    iconUrl: agyaIcon,
+    iconSize: [688/10,408/10],
+    popupAnchor: [-3, -76],
+  }),
+  "YARIS CROSS": new Icon({
+    iconUrl: yarissIcon,
+    iconSize: [200/3,135/3],
+    popupAnchor: [-3, -76],
+  }),
+};
+
+// const vehicleMarkerIcons = {};
+// for (const vehicle of vehicles) {
+//   vehicleMarkerIcons[vehicle] = new L.icon({
+//     iconUrl: vehicleIcons[vehicle],
+//     iconSize: [35, 35],
+//     iconAnchor: [22, 94],
+//     popupAnchor: [-3, -76],
+//   });
+// }
 
 // Add dummy vehicle count to the GeoJSON data
 const batasWilayahWithCounts = {
@@ -200,10 +227,13 @@ function MapComponent() {
                 tipeKendaraan.Latitude &&
                 tipeKendaraan.Longitude
               ) {
+                // var vehicleType = tipeKendaraan.Tipe;
+                // var icon = vehicleMarkerIcons[vehicleType] || L.icon.Default;
                 return (
                   <Marker
                     key={tipeKendaraan.id}
                     position={[tipeKendaraan.Latitude, tipeKendaraan.Longitude]}
+                    icon={vehicleIcons[tipeKendaraan.Tipe]}
                     eventHandlers={{
                       click: () => {
                         setSelectedVehicle(tipeKendaraan.id);
