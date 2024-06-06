@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import bandungLogo from "../../../assets/Logo Kota Bandung.png";
+import unpadLogo from "../../../assets/Logo Unpad.png";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -40,7 +42,17 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
+      <div className="flex flex-col items-center mb-6">
+        <div className="flex items-center justify-center mb-4">
+          <img src={bandungLogo} alt="Bandung Logo" className="h-16 mr-4" />
+          <img src={unpadLogo} alt="UNPAD Logo" className="h-16" />
+        </div>
+        <h2 className="text-xl font-bold text-center mb-2">
+          Sistem Informasi Geografis Berbasis Web Untuk Pemetaan Kendaraan Roda
+          Empat di Kota Bandung
+        </h2>
+      </div>
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
         <form onSubmit={handleSubmit}>
