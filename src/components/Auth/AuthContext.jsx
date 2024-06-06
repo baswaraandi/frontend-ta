@@ -22,7 +22,6 @@ export const AuthContextProvider = ({ children }) => {
       sameSite: "None",
     });
   };
-
   const logout = () => {
     setUser(null);
     Cookies.remove("user", { secure: true, sameSite: "None" });

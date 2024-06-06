@@ -6,6 +6,7 @@ import { useState } from "react";
 
 function AddKendaraanManagement({ onAddSuccess }) {
   const [newKendaraan, setNewKendaraan] = useState({
+    BLN_THN:"",
     Nopol: "",
     Nama: "",
     Alamat: "",
@@ -44,7 +45,7 @@ function AddKendaraanManagement({ onAddSuccess }) {
       toast.success(`Data ${newKendaraan.Nopol} Added!`, {
         position: "top-right",
       });
-
+      console.log("Success Adding Data", data);
       onAddSuccess();
     } catch (error) {
       console.error("Error adding kendaraan:", error);

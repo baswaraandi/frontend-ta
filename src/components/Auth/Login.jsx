@@ -21,6 +21,7 @@ function Login() {
           {
             email: response.data.data.email,
             fullname: response.data.data.fullname,
+            role: response.data.data.role,
           },
           response.data.data.token
         );
