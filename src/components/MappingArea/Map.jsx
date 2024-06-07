@@ -13,10 +13,8 @@ import backendApi from "../../utils/api-config";
 import Cookies from "js-cookie";
 import chroma from "chroma-js";
 import VehiclePopup from "./VehiclePopUp";
-import { Icon } from "leaflet";
+import vehicleIcons from "./IconVehicle";
 // L.noConflict();
-import agyaIcon from "../../../assets/Kendaraan/Agya.png";
-import yarissIcon from "../../../assets/Kendaraan/Yaris Cross.png";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale);
 
@@ -25,18 +23,18 @@ const vehicles = [
   "Avanza",
   "Ayla",
   "Brio",
-  "Brv mobilio",
+  "Mobilio",
   "Calya",
-  "Ertiga xl7",
+  "Ertiga",
   "Fortuner",
-  "Granmax pu",
-  "Innova Reborn",
-  "Isuzu Traga",
+  "Grandmax",
+  "Innova",
+  // "Isuzu Traga",
   "Raize",
   "Rocky",
   "Sigra",
   "Stargazer",
-  "Suzuki carry pcu",
+  // "Suzuki carry pcu",
   "Terios",
   "Veloz",
   "Xenia",
@@ -44,29 +42,6 @@ const vehicles = [
   "Yaris Cross",
   "Zenix",
 ];
-
-const vehicleIcons = {
-  "AGYA": new Icon({
-    iconUrl: agyaIcon,
-    iconSize: [688/10,408/10],
-    popupAnchor: [-3, -76],
-  }),
-  "YARIS CROSS": new Icon({
-    iconUrl: yarissIcon,
-    iconSize: [200/3,135/3],
-    popupAnchor: [-3, -76],
-  }),
-};
-
-// const vehicleMarkerIcons = {};
-// for (const vehicle of vehicles) {
-//   vehicleMarkerIcons[vehicle] = new L.icon({
-//     iconUrl: vehicleIcons[vehicle],
-//     iconSize: [35, 35],
-//     iconAnchor: [22, 94],
-//     popupAnchor: [-3, -76],
-//   });
-// }
 
 // Add dummy vehicle count to the GeoJSON data
 const batasWilayahWithCounts = {
