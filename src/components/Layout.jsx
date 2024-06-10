@@ -12,7 +12,7 @@ function Layout() {
   return (
     <div className="flex h-screen w-screen overflow-hidden">
       <SidebarComponent />
-      <div className="flex-grow pt-4 overflow-x-auto">
+      <div className="flex-grow overflow-x-auto">
         <Outlet />
       </div>
     </div>
