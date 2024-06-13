@@ -93,7 +93,7 @@ function KendaraanManagement() {
   };
 
   return (
-    <div className="bg-white p-4 rounded shadow-md mx-4 max-w-screen-2xl border border-blue-950">
+    <div className="bg-white p-4 rounded shadow-md mx-4 max-w-screen-2xl">
       <h2 className="text-xl font-bold mb-2">Manajemen Kendaraan</h2>
       {loading ? (
         <p>Loading kendaraan...</p>
@@ -117,12 +117,12 @@ function KendaraanManagement() {
                     type="text"
                     value={search}
                     onChange={handleSearchChange}
-                    className="px-4 py-2 border rounded-md w-full"
+                    className="input input-bordered flex items-center gap-2"
                     placeholder="Search by type"
                   />
                   <button
                     type="submit"
-                    className="ml-2 px-4 py-2 bg-blue-950 text-white rounded-md hover:bg-blue-500"
+                    className="ml-4 btn btn-outline btn-primary"
                   >
                     Search
                   </button>
@@ -149,126 +149,56 @@ function KendaraanManagement() {
                 </button>
               </div>
               <div className="max-h-[700px] overflow-y-auto">
-                <table className="min-w-full divide-y divide-gray-200">
+                <table className="table table-zebra">
                   <thead className="bg-gray-50 sticky top-0">
                     <tr>
-                      <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                        ID
-                      </th>
-                      <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                        Bulan
-                      </th>
-                      <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                        Nopol
-                      </th>
-                      <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                        Nama
-                      </th>
-                      <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                        Alamat
-                      </th>
-                      <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                        Kota / Kab
-                      </th>
-                      <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                        Kecamatan
-                      </th>
-                      <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                        Merk
-                      </th>
-                      <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                        Type
-                      </th>
-                      <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                        Tipe
-                      </th>
-                      <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                        Modell
-                      </th>
-                      <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                        Jenis
-                      </th>
-                      <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                        Model
-                      </th>
-                      <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                        Tahun
-                      </th>
-                      <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                        CC
-                      </th>
-                      <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                        Nomor Rangka
-                      </th>
-                      <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                        Nomor Mesin
-                      </th>
-                      <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                        Warna
-                      </th>
-                      <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                        Action
-                      </th>
+                      <th>ID</th>
+                      <th>Bulan</th>
+                      <th>Nopol</th>
+                      <th>Nama</th>
+                      <th>Alamat</th>
+                      <th>Kota / Kab</th>
+                      <th>Kecamatan</th>
+                      <th>Merk</th>
+                      <th>Type</th>
+                      <th>Tipe</th>
+                      <th>Modell</th>
+                      <th>Jenis</th>
+                      <th>Model</th>
+                      <th>Tahun</th>
+                      <th>CC</th>
+                      <th>Nomor Rangka</th>
+                      <th>Nomor Mesin</th>
+                      <th>Warna</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200 text-center">
                     {Array.isArray(kendaraan) &&
                       kendaraan.map((data) => (
                         <tr key={data.id}>
-                          <td className="p-4 text-sm text-slate-800">
-                            {data.id}
-                          </td>
-                          <td className="p-4 text-sm text-slate-800">
-                            {data.BLN_THN}
-                          </td>
-                          <td className="p-4 text-sm text-slate-800 truncate">
-                            {data.Nopol}
-                          </td>
-                          <td className="p-4 text-sm text-slate-800 truncate max-w-60">
-                            {data.Nama}
-                          </td>
-                          <td className="p-4 text-sm text-slate-800 truncate overflow-hidden max-w-40">
+                          <td>{data.id}</td>
+                          <td>{data.BLN_THN}</td>
+                          <td className="truncate">{data.Nopol}</td>
+                          <td className="truncate max-w-60">{data.Nama}</td>
+                          <td className="truncate overflow-hidden max-w-40">
                             {data.Alamat}
                           </td>
-                          <td className="p-4 text-sm text-slate-800">
-                            {data.Kab_Kota}
-                          </td>
-                          <td className="p-4 text-sm text-slate-800">
-                            {data.Kecamatan}
-                          </td>
-                          <td className="p-4 text-sm text-slate-800">
-                            {data.Merk}
-                          </td>
-                          <td className="p-4 text-sm text-slate-800 truncate overflow-hidden max-w-40">
+                          <td>{data.Kab_Kota}</td>
+                          <td>{data.Kecamatan}</td>
+                          <td>{data.Merk}</td>
+                          <td className="truncate overflow-hidden max-w-40">
                             {data.Type}
                           </td>
-                          <td className="p-4 text-sm text-slate-800">
-                            {data.Tipe}
-                          </td>
-                          <td className="p-4 text-sm text-slate-800">
-                            {data.Modell}
-                          </td>
-                          <td className="p-4 text-sm text-slate-800">
-                            {data.Jenis}
-                          </td>
-                          <td className="p-4 text-sm text-slate-800">
-                            {data.Model}
-                          </td>
-                          <td className="p-4 text-sm text-slate-800">
-                            {data.Tahun}
-                          </td>
-                          <td className="p-4 text-sm text-slate-800">
-                            {data.CC}
-                          </td>
-                          <td className="p-4 text-sm text-slate-800">
-                            {data.No_Ka}
-                          </td>
-                          <td className="p-4 text-sm text-slate-800">
-                            {data.No_Mesin}
-                          </td>
-                          <td className="p-4 text-sm text-slate-800">
-                            {data.Warna}
-                          </td>
+                          <td>{data.Tipe}</td>
+                          <td>{data.Modell}</td>
+                          <td>{data.Jenis}</td>
+                          <td>{data.Model}</td>
+                          <td>{data.Tahun}</td>
+                          <td>{data.CC}</td>
+                          <td>{data.No_Ka}</td>
+                          <td>{data.No_Mesin}</td>
+                          <td>{data.Warna}</td>
                           <td className="p-4">
                             <div className="flex items-center justify-center">
                               <button
@@ -291,32 +221,50 @@ function KendaraanManagement() {
                 </table>
                 <div></div>
               </div>
-              <div className="pagination flex items-center justify-end space-x-4 mt-4">
-                <button
-                  onClick={() => handlePageChange(page - 1)}
-                  disabled={page === 1}
-                  className={`px-4 py-2 border rounded ${
-                    page === 1
-                      ? "bg-gray-300 cursor-not-allowed"
-                      : "bg-blue-500 text-white hover:bg-blue-700"
-                  }`}
-                >
-                  Previous
-                </button>
-                <span className="text-sm font-medium">
-                  Page {page} of {totalPages}
-                </span>
-                <button
-                  onClick={() => handlePageChange(page + 1)}
-                  disabled={page === totalPages}
-                  className={`px-7 py-2 border rounded ${
-                    page === totalPages
-                      ? "bg-gray-300 cursor-not-allowed"
-                      : "bg-blue-500 text-white hover:bg-blue-700"
-                  }`}
-                >
-                  Next
-                </button>
+              <div className="join mt-4">
+                {Array.from({ length: totalPages }, (_, index) => {
+                  if (index < 2 || index > totalPages - 3) {
+                    return (
+                      <button
+                        key={index}
+                        onClick={() => handlePageChange(index + 1)}
+                        disabled={page === index + 1}
+                        className={`join-item btn ${
+                          page === index + 1 ? "btn-disabled" : ""
+                        }`}
+                      >
+                        {index + 1}
+                      </button>
+                    );
+                  } else if (index === 2 || index === totalPages - 3) {
+                    return (
+                      <button
+                        key={index}
+                        onClick={() => handlePageChange(index + 1)}
+                        className="join-item btn"
+                      >
+                        ...
+                      </button>
+                    );
+                  } else if (
+                    index === page - 1 ||
+                    index === page ||
+                    index === page + 1
+                  ) {
+                    return (
+                      <button
+                        key={index}
+                        onClick={() => handlePageChange(index + 1)}
+                        className={`join-item btn ${
+                          page === index + 1 ? "btn-disabled" : ""
+                        }`}
+                      >
+                        {index + 1}
+                      </button>
+                    );
+                  }
+                  return null;
+                })}
               </div>
             </>
           )}

@@ -40,136 +40,74 @@ function AnalisisManagement() {
           Januari sampai September 2023
         </p>
       </div>
-      <div className="max-h-screen overflow-y-auto overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
+      <div className="max-h-[750px] overflow-y-auto overflow-x-auto">
+        <table className="table table-zebra">
           <thead className="bg-gray-50 sticky top-0">
             <tr>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                Kecamatan
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                Lat
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                Long
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                Y1
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X1
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X2
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X3
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X4
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X5
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X6
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X7
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X8
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X9
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X10
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X11
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X12
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X13
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X14
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X15
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X16
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X17
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X18
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X19
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X20
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X21
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X22
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X23
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X24
-              </th>
-              <th className="p-4 text-xs font-medium text-slate-800 uppercase tracking-wider">
-                X25
-              </th>
+              <th>Kecamatan</th>
+              <th>Lat</th>
+              <th>Long</th>
+              <th>Y1</th>
+              <th>X1</th>
+              <th>X2</th>
+              <th>X3</th>
+              <th>X4</th>
+              <th>X5</th>
+              <th>X6</th>
+              <th>X7</th>
+              <th>X8</th>
+              <th>X9</th>
+              <th>X10</th>
+              <th>X11</th>
+              <th>X12</th>
+              <th>X13</th>
+              <th>X14</th>
+              <th>X15</th>
+              <th>X16</th>
+              <th>X17</th>
+              <th>X18</th>
+              <th>X19</th>
+              <th>X20</th>
+              <th>X21</th>
+              <th>X22</th>
+              <th>X23</th>
+              <th>X24</th>
+              <th>X25</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200 text-center">
             {!!dataAnalisis &&
               dataAnalisis.map((analisis) => (
                 <tr key={analisis.id}>
-                  <td className="p-4 text-sm text-slate-800">
-                    {analisis.Kecamatan}
-                  </td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.Lat}</td>
-                  <td className="p-4 text-sm text-slate-800">
-                    {analisis.Long}
-                  </td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.Y}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X1}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X2}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X3}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X4}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X5}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X6}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X7}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X8}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X9}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X10}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X11}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X12}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X13}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X14}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X15}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X16}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X17}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X18}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X19}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X20}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X21}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X22}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X23}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X24}</td>
-                  <td className="p-4 text-sm text-slate-800">{analisis.X25}</td>
+                  <td>{analisis.Kecamatan}</td>
+                  <td>{analisis.Lat}</td>
+                  <td>{analisis.Long}</td>
+                  <td>{analisis.Y}</td>
+                  <td>{analisis.X1}</td>
+                  <td>{analisis.X2}</td>
+                  <td>{analisis.X3}</td>
+                  <td>{analisis.X4}</td>
+                  <td>{analisis.X5}</td>
+                  <td>{analisis.X6}</td>
+                  <td>{analisis.X7}</td>
+                  <td>{analisis.X8}</td>
+                  <td>{analisis.X9}</td>
+                  <td>{analisis.X10}</td>
+                  <td>{analisis.X11}</td>
+                  <td>{analisis.X12}</td>
+                  <td>{analisis.X13}</td>
+                  <td>{analisis.X14}</td>
+                  <td>{analisis.X15}</td>
+                  <td>{analisis.X16}</td>
+                  <td>{analisis.X17}</td>
+                  <td>{analisis.X18}</td>
+                  <td>{analisis.X19}</td>
+                  <td>{analisis.X20}</td>
+                  <td>{analisis.X21}</td>
+                  <td>{analisis.X22}</td>
+                  <td>{analisis.X23}</td>
+                  <td>{analisis.X24}</td>
+                  <td>{analisis.X25}</td>
                 </tr>
               ))}
           </tbody>

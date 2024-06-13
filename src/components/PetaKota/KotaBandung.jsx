@@ -122,10 +122,10 @@ function KotaBandungMapComponent() {
     [dataKendaraan, statistics]
   );
 
-  const onEachFeature = async (feature, layer) => {
+  const onEachFeature = (feature, layer) => {
     const kecamatanName = feature.properties.nama_kecamatan;
-    // const jumlahKendaraan = feature.properties.dataKendaraan;
-    const popupContent = `<b>Kecamatan:</b> ${kecamatanName} <br><br/> <b>Jumlah:</b> ${"--"}`;
+    const jumlahKendaraan = feature.properties.dataKendaraan;
+    const popupContent = `<b>Kecamatan:</b> ${kecamatanName} <br><br/> <b>Jumlah:</b> ${jumlahKendaraan}`;
     layer.bindPopup(popupContent);
   };
 
@@ -203,7 +203,7 @@ function KotaBandungMapComponent() {
             <div className="flex items-center mb-2">
               <div className="w-6 h-6 bg-yellow-500 mr-2"></div>
               <span>
-                Di Antara Batas Bawah dan Batas Atas ({statistics.batas_bawah} -{" "}
+                Rata-rata ({statistics.batas_bawah} -{" "}
                 {statistics.batas_atas})
               </span>
             </div>
