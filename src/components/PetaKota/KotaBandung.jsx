@@ -154,7 +154,7 @@ function KotaBandungMapComponent() {
         </div>
         <MapContainer
           center={[-6.905977, 107.613144]}
-          zoom={12}
+          zoom={13}
           scrollWheelZoom={true}
           style={{ height: "700px", width: "100%" }}
           ref={mapRef}

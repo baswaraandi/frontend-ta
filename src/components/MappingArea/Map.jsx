@@ -1,15 +1,7 @@
-import { useState, useEffect } from "react";
-import {
-  MapContainer,
-  TileLayer,
-  GeoJSON,
-  Marker,
-  Popup,
-  LayersControl,
-} from "react-leaflet";
+import { useState, useRef } from "react";
+import { MapContainer, TileLayer, GeoJSON, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import batasWilayah from "../../data/batas-administrasi.json";
-import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   BarElement,
@@ -21,6 +13,8 @@ import Cookies from "js-cookie";
 import chroma from "chroma-js";
 import VehiclePopup from "./VehiclePopUp";
 import vehicleIcons from "./IconVehicle";
+import VehicleDetails from "./VehicleDetails";
+import ResetMap from "./ResetMap";
 // L.noConflict();
 
 ChartJS.register(BarElement, CategoryScale, LinearScale);
@@ -65,8 +59,9 @@ const batasWilayahWithCounts = {
 function MapComponent() {
   const [showBoundary, setShowBoundary] = useState(true);
   const [selectedVehicle, setSelectedVehicle] = useState("All");
-  const [chartData, setChartData] = useState({ labels: [], datasets: [] });
   const [dataVehicle, setDataVehicle] = useState([]);
+  const [selectedVehicleDetails, setSelectedVehicleDetails] = useState(null);
+  const mapReset = useRef();
 
   const uniqueKecamatanNames = [
     ...new Set(
@@ -109,27 +104,6 @@ function MapComponent() {
     setShowBoundary(!showBoundary);
   };
 
-  // const handleVehicleChange = async (event) => {
-  //   const token = Cookies.get("token");
-  //   setSelectedVehicle(event.target.value);
-  //   console.log("value dropdown :", event.target.value);
-  //   try {
-  //     const response = await backendApi.get(
-  //       `/kendaraan-tipe/${event.target.value}`,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-  //     console.log(response);
-  //     setDataVehicle(response.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   const handleVehicleChange = async (value) => {
     const token = Cookies.get("token");
     setSelectedVehicle(value);
@@ -143,12 +117,12 @@ function MapComponent() {
       });
       console.log(response);
       setDataVehicle(response.data);
+      setSelectedVehicleDetails(response.data[0] || null);
     } catch (error) {
       console.log(error);
     }
   };
 
-  // Filter data based on selected vehicle
   const filteredData =
     selectedVehicle === "All"
       ? batasWilayahWithCounts
@@ -159,56 +133,19 @@ function MapComponent() {
           ),
         };
 
-  // Update chart data when selectedVehicle changes
-  useEffect(() => {
-    const newChartData = {
-      labels: uniqueKecamatanNames.slice(0, 30), // Limit to maximum 30 entries
-      datasets: [
-        {
-          label: "Jumlah Kendaraan",
-          data: uniqueKecamatanNames.slice(0, 30).map((kecamatan) => {
-            const feature = batasWilayahWithCounts.features.find(
-              (feature) => feature.properties.nama_kecamatan === kecamatan
-            );
-            return feature ? feature.properties.jumlah_kendaraan : 0;
-          }),
-          backgroundColor: uniqueKecamatanNames
-            .slice(0, 30)
-            .map((kecamatan) => {
-              const vehicleCount =
-                batasWilayahWithCounts.features.find(
-                  (feature) => feature.properties.nama_kecamatan === kecamatan
-                )?.properties.jumlah_kendaraan || 0;
-              if (vehicleCount > 600) {
-                return "green";
-              } else if (vehicleCount >= 300) {
-                return "yellow";
-              } else {
-                return "red";
-              }
-            }),
-          borderWidth: 1,
-        },
-      ],
-    };
-
-    setChartData(newChartData);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedVehicle]);
-
   return (
     <div className="p-10 flex">
       <div className="flex-grow">
         <h1 className="text-4xl font-extrabold text-blue-950 mb-6 border-b-4 border-blue-950 pb-2">
           Kota Bandung Map
         </h1>
-        <div className="relative">
+        <div>
           <MapContainer
-            className="-z-10"
             center={[-6.905977, 107.613144]}
             zoom={12}
             scrollWheelZoom={true}
             style={{ height: "700px", width: "100%" }}
+            ref={mapReset}
           >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -257,53 +194,49 @@ function MapComponent() {
               <div>No Data Available</div>
             )}
           </MapContainer>
-          <div className="absolute z-1 top-4 right-4">
-            <details className="dropdown dropdown-end">
-              <summary className="m-1 btn w-36">Filter Kendaraan</summary>
-              <ul className="p-2 shadow poin dropdown-content z-[1] bg-base-100 rounded-box w-36 max-h-96 overflow-y-scroll">
-                <li
-                  onClick={() => handleVehicleChange(null)}
-                  className="px-2 cursor-pointer hover:bg-slate-400 hover:text-white"
-                >
-                  <a>Reset Filter</a>
-                </li>
-                {vehicles.map((vehicle) => (
-                  <li
-                    key={vehicle}
-                    value={vehicle}
-                    onClick={() => handleVehicleChange(vehicle)}
-                    className="hover:bg-slate-400 hover:text-white cursor-pointer px-2"
-                  >
-                    <a>{vehicle}</a>
-                  </li>
-                ))}
-              </ul>
-            </details>
+        </div>
+        <div className="flex">
+          <div className="mt-4 mr-4">
+            <input
+              type="checkbox"
+              id="showBoundary"
+              name="showBoundary"
+              checked={showBoundary}
+              onChange={toggleBoundary}
+              className="mr-2"
+            />
+            <label htmlFor="showBoundary">Tampilkan Batas Wilayah</label>
           </div>
+          <ResetMap mapRef={mapReset} />
         </div>
-        <div className="mt-4">
-          <input
-            type="checkbox"
-            id="showBoundary"
-            name="showBoundary"
-            checked={showBoundary}
-            onChange={toggleBoundary}
-            className="mr-2"
-          />
-          <label htmlFor="showBoundary">Tampilkan Batas Wilayah</label>
+      </div>
+      <div className="flex flex-col items-center ml-6">
+        <div className="mt-10">
+          <details className="dropdown dropdown-end">
+            <summary className="m-1 btn w-56">Filter Kendaraan</summary>
+            <ul className="p-2 shadow poin dropdown-content z-[1] bg-base-100 rounded-box w-56 max-h-96 overflow-y-scroll">
+              <li
+                onClick={() => handleVehicleChange(null)}
+                className="px-2 cursor-pointer hover:bg-slate-400 hover:text-white"
+              >
+                <a>Reset Filter</a>
+              </li>
+              {vehicles.map((vehicle) => (
+                <li
+                  key={vehicle}
+                  value={vehicle}
+                  onClick={() => handleVehicleChange(vehicle)}
+                  className="hover:bg-slate-400 hover:text-white cursor-pointer px-2"
+                >
+                  <a>{vehicle}</a>
+                </li>
+              ))}
+            </ul>
+          </details>
         </div>
-        <div className="mt-4 p-4 bg-gray-100 rounded">
-          <h2 className="text-2xl font-semibold mb-2">Informasi Peta</h2>
-          <p className="mb-2">
-            Peta ini menampilkan wilayah administratif Kota Bandung. Setiap
-            kecamatan diberi warna yang berbeda untuk memudahkan identifikasi.
-          </p>
-          <p className="mb-2">
-            Anda dapat menggunakan kotak centang di atas untuk menampilkan atau
-            menyembunyikan batas wilayah.
-          </p>
-          <p>Klik pada wilayah untuk melihat nama kecamatan.</p>
-        </div>
+
+        {/* Card untuk menampilkan detail kendaraan */}
+        <VehicleDetails vehicle={selectedVehicleDetails} />
       </div>
     </div>
   );
