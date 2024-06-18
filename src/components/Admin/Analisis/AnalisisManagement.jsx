@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import backendApi from "../../../utils/api-config";
 import Cookies from "js-cookie";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 // import { useNavigate } from "react-router-dom";
 
 function AnalisisManagement() {
@@ -31,14 +33,28 @@ function AnalisisManagement() {
     }
   };
 
+  const exportToExcel = () => {
+    const ws = XLSX.utils.json_to_sheet(dataAnalisis);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "DataAnalisis");
+    const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+    const data = new Blob([excelBuffer], { type: "application/octet-stream" });
+    saveAs(data, "DataAnalisis.xlsx");
+  };
+
   return (
     <div className="bg-white p-4 rounded shadow-md m-4">
       <div>
         <h2 className="text-xl font-bold mb-4">Data Analisis</h2>
-        <p className="mb-4">
-          Jumlah data kendaraan berdasarkan kecamatan di Kota Bandung pada bulan
-          Januari sampai September 2023
-        </p>
+        <div className="flex justify-between">
+          <p className="mb-4">
+            Jumlah data kendaraan berdasarkan kecamatan di Kota Bandung pada
+            bulan Januari sampai September 2023
+          </p>
+          <button onClick={exportToExcel} className="btn btn-wide mb-4">
+            Unduh Data ke Excel
+          </button>
+        </div>
       </div>
       <div className="max-h-[750px] overflow-y-auto overflow-x-auto">
         <table className="table table-zebra">

@@ -1,4 +1,5 @@
 import AICTable from "./AicComparison";
+import Kesimpulan from "./Kesimpulan";
 import ModelTable from "./Model";
 import ParameterTable from "./Parameter";
 import TabelAdaptiveBw from "./TabelAdaptiveBw";
@@ -7,7 +8,7 @@ import TabelFixedBw from "./TabelFixedBw";
 
 const GWRResult = () => {
   return (
-    <div className="grid grid-cols-4 grid-rows-5 gap-4 p-4">
+    <div className="grid grid-cols-4 grid-rows-6 gap-4 p-4">
       <div className="card bg-base-100 shadow-xl col-span-2 row-span-2 p-4 max-h-screen">
         <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
           <li>
@@ -117,7 +118,7 @@ const GWRResult = () => {
           </li>
         </ul>
       </div>
-      <div className="card bg-blue-950 col-start-3 shadow-xl p-4 max-h-fit">
+      <div className="card bg-blue-950 col-start-3 shadow-xl p-4 max-h-[450px]">
         <h2 className="font-bold text-white text-2xl">Bandwith</h2>
         <div className="overflow-x-auto">
           <table className="table text-white">
@@ -137,15 +138,15 @@ const GWRResult = () => {
         </div>
         <img src="" alt="" />
       </div>
-      <div className="card bg-base-10 col-start-3 shadow-xl row-start-2 p-4 overflow-y-auto max-h-96">
+      <div className="card bg-base-10 col-start-3 shadow-xl row-start-2 p-4 overflow-y-auto max-h-[450px]">
         <h2 className="font-bold text-2xl">Estimasi Parameter</h2>
         <ParameterTable />
       </div>
-      <div className="card bg-base-10 col-start-4 shadow-xl row-start-1 p-4">
+      <div className="card bg-base-10 col-start-4 shadow-xl row-start-1 p-4 max-h-[450px]">
         <h2 className="font-bold text-2xl">Uji Kecocokan Model</h2>
         <ModelTable />
       </div>
-      <div className="card bg-blue-950 col-start-4 shadow-xl row-start-2 p-4 max-h-fit">
+      <div className="card bg-blue-950 col-start-4 shadow-xl row-start-2 p-4 max-h-[450px]">
         <h2 className="font-bold text-2xl text-white">
           Pemilihan Model Terbaik
         </h2>
@@ -177,8 +178,16 @@ const GWRResult = () => {
         </h2>
         <TabelAdaptiveBw />
       </div>
-      <div className="card bg-base-10 shadow-xl col-span-4 row-start-5">
-        <h2 className="font-bold text-2xl text-blue-950">Kesimpulan</h2>
+      <div className="card bg-base-10 shadow-xl col-span-4 row-span-2 row-start-5 p-8">
+        <h2 className="font-bold text-2xl text-blue-950 mb-4">Kesimpulan</h2>
+        <p className="mb-4">
+          Penelitian ini bertujuan untuk menguji kecocokan model Geographically
+          Weighted Regression (GWR) terhadap data yang telah dikumpulkan
+          mengenai berbagai variabel yang mempengaruhi suatu fenomena di 30
+          Kecamatan. Berdasarkan hasil analisis yang dilakukan, beberapa
+          kesimpulan penting dapat diambil:
+        </p>
+        <Kesimpulan />
       </div>
     </div>
   );
