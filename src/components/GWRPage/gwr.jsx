@@ -1,11 +1,14 @@
 import AICTable from "./AicComparison";
 import ModelTable from "./Model";
 import ParameterTable from "./Parameter";
+import TabelAdaptiveBw from "./TabelAdaptiveBw";
+import TabelAnalisis from "./TabelAnalisis";
+import TabelFixedBw from "./TabelFixedBw";
 
 const GWRResult = () => {
   return (
-    <div className="grid grid-cols-4 grid-rows-2 gap-4 p-4">
-      <div className="card bg-base-100 shadow-xl col-span-2 row-span-6 p-4 max-h-screen">
+    <div className="grid grid-cols-4 grid-rows-5 gap-4 p-4">
+      <div className="card bg-base-100 shadow-xl col-span-2 row-span-2 p-4 max-h-screen">
         <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
           <li>
             <div className="timeline-middle">
@@ -148,13 +151,34 @@ const GWRResult = () => {
         </h2>
         <AICTable />
         <div className="text-white p-4 overflow-y-scroll">
-          Berdasarkan Tabel, nilai R^2 pada fixed lebih besar daripada nilai
-          R^2 pada adaptive, dan pada nilai AIC, fixed GWR memiliki nilai yang
-          lebih kecil dari nilai adaptive GWR. Dari hasil tersebut didapatkan
+          Berdasarkan Tabel, nilai R^2 pada fixed lebih besar daripada nilai R^2
+          pada adaptive, dan pada nilai AIC, fixed GWR memiliki nilai yang lebih
+          kecil dari nilai adaptive GWR. Dari hasil tersebut didapatkan
           kesimpulan bahwa model fixed GWR adalah model yang lebih baik karena
           memiliki nilai AIC yang lebih kecil namun memiliki nilai R^2 yang
           lebih besar.
         </div>
+      </div>
+      <div className="card bg-base-10 shadow-xl col-span-4 row-start-3 overflow-x-scroll overflow-y-scroll max-h-[450px] px-8">
+        <h2 className="font-bold text-2xl text-blue-950 p-4">
+          Tabel Data Analisis
+        </h2>
+        <TabelAnalisis />
+      </div>
+      <div className="card bg-base-10 shadow-xl col-span-2 row-start-4 overflow-x-scroll overflow-y-scroll max-h-[450px] px-8">
+        <h2 className="font-bold text-2xl text-blue-950 p-4">
+          Tabel Estimasi Data Fixed Bandwith
+        </h2>
+        <TabelFixedBw />
+      </div>
+      <div className="card bg-base-10 shadow-xl col-span-2 row-start-4 overflow-x-scroll overflow-y-scroll max-h-[450px] px-8">
+        <h2 className="font-bold text-2xl text-blue-950 p-4">
+          Tabel Estimasi Data Adaptive Bandwith
+        </h2>
+        <TabelAdaptiveBw />
+      </div>
+      <div className="card bg-base-10 shadow-xl col-span-4 row-start-5">
+        <h2 className="font-bold text-2xl text-blue-950">Kesimpulan</h2>
       </div>
     </div>
   );
