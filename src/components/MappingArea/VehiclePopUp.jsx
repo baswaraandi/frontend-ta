@@ -56,7 +56,7 @@ const VehiclePopup = ({ vehicleId }) => {
           <p>
             <strong>Nopol:</strong> {vehicle.Nopol}
           </p>
-          <p>
+          <p className="hidden">
             <strong>Nama:</strong> {vehicle.Nama}
           </p>
           <p>

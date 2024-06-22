@@ -7,6 +7,7 @@ import { saveAs } from "file-saver";
 
 function AnalisisManagement() {
   const [dataAnalisis, setDataAnalisis] = useState([]);
+  const [file, setFile] = useState(null);
 
   useEffect(() => {
     getAnalisis();
@@ -40,6 +41,32 @@ function AnalisisManagement() {
     const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
     const data = new Blob([excelBuffer], { type: "application/octet-stream" });
     saveAs(data, "DataAnalisis.xlsx");
+  };
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleFileUpload = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const token = Cookies.get("token");
+      await backendApi.post("/upload", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      alert("File uploaded successfully");
+      getAnalisis();
+      window.location.reload();
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      alert("Failed to upload file");
+    }
   };
 
   return (
@@ -128,6 +155,18 @@ function AnalisisManagement() {
               ))}
           </tbody>
         </table>
+      </div>
+      <div className="mt-4">
+        <form onSubmit={handleFileUpload}>
+          <input
+            type="file"
+            onChange={handleFileChange}
+            className="mb-2 file-input file-input-bordered w-full max-w-xs mr-4"
+          />
+          <button type="submit" className="btn btn-neutral">
+            Upload File
+          </button>
+        </form>
       </div>
     </div>
   );
