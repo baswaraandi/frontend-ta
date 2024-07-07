@@ -6,7 +6,7 @@ import { useState } from "react";
 
 function AddKendaraanManagement({ onAddSuccess }) {
   const [newKendaraan, setNewKendaraan] = useState({
-    BLN_THN:"",
+    BLN_THN: "",
     Nopol: "",
     Nama: "",
     Alamat: "",
@@ -73,6 +73,7 @@ function AddKendaraanManagement({ onAddSuccess }) {
               })
             }
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Contoh: Agustus / AGS"
           />
         </div>
         <div className="mb-2">
@@ -90,6 +91,7 @@ function AddKendaraanManagement({ onAddSuccess }) {
               })
             }
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Contoh : D 1234 ABC"
           />
         </div>
         <div className="mb-2">
@@ -107,6 +109,7 @@ function AddKendaraanManagement({ onAddSuccess }) {
               })
             }
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Contoh : Ridwan Dadu"
           />
         </div>
         <div className="mb-2">
@@ -127,6 +130,7 @@ function AddKendaraanManagement({ onAddSuccess }) {
               })
             }
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Contoh : JL. DAGO BARAT RT. 009 RW. 005 KEL. DAGO"
           />
         </div>
         <div className="mb-2">
@@ -147,6 +151,7 @@ function AddKendaraanManagement({ onAddSuccess }) {
               })
             }
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Contoh : Bandung"
           />
         </div>
         <div className="mb-2">
@@ -167,6 +172,7 @@ function AddKendaraanManagement({ onAddSuccess }) {
               })
             }
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Isikan dengan Angka 1-30"
           />
         </div>
         <div className="mb-2">
@@ -184,6 +190,7 @@ function AddKendaraanManagement({ onAddSuccess }) {
               })
             }
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Contoh : Toyota"
           />
         </div>
         <div className="mb-2">
@@ -201,6 +208,7 @@ function AddKendaraanManagement({ onAddSuccess }) {
               })
             }
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Contoh : A351RA-GBEFJ 1.2 G CVT"
           />
         </div>
         <div className="mb-2">
@@ -218,6 +226,7 @@ function AddKendaraanManagement({ onAddSuccess }) {
               })
             }
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Contoh : Agya"
           />
         </div>
         <div className="mb-2">
@@ -238,6 +247,7 @@ function AddKendaraanManagement({ onAddSuccess }) {
               })
             }
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Contoh : Agya G"
           />
         </div>
         <div className="mb-2">
@@ -255,6 +265,7 @@ function AddKendaraanManagement({ onAddSuccess }) {
               })
             }
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Contoh : Mobil Penumpang / MB. Penumpang"
           />
         </div>
         <div className="mb-2">
@@ -272,6 +283,7 @@ function AddKendaraanManagement({ onAddSuccess }) {
               })
             }
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Contoh : Minibus"
           />
         </div>
         <div className="mb-2">
@@ -289,6 +301,7 @@ function AddKendaraanManagement({ onAddSuccess }) {
               })
             }
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Contoh : 2023"
           />
         </div>
         <div className="mb-2">
@@ -306,6 +319,7 @@ function AddKendaraanManagement({ onAddSuccess }) {
               })
             }
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Contoh : 1198"
           />
         </div>
         <div className="mb-2">
@@ -323,6 +337,7 @@ function AddKendaraanManagement({ onAddSuccess }) {
               })
             }
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Contoh : MHKAB1BC0PJ011103"
           />
         </div>
         <div className="mb-2">
@@ -343,6 +358,7 @@ function AddKendaraanManagement({ onAddSuccess }) {
               })
             }
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Contoh : WAA045320"
           />
         </div>
         <div className="mb-2">
@@ -360,6 +376,8 @@ function AddKendaraanManagement({ onAddSuccess }) {
               })
             }
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+
+            placeholder="Contoh : Hitam"
           />
         </div>
         <div className="col-span-2">

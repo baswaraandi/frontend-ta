@@ -21,30 +21,28 @@ function Dashboard() {
   }, []);
 
   return (
-    <div className="grid grid-cols-3 grid-rows-4 gap-3 m-8 max-w-3xl">
-      <div className="col-span-3 row-span-3">
-        <div className="">
-          {loading === true ? (
-            <div>Loading....</div>
-          ) : (
-            <ChartTotal arrayTotalKendaran={dataKendaraan} />
-          )}
+    <div className="container mx-auto p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="col-span-1 md:col-span-2 lg:col-span-3">
+          <div>
+            {loading ? (
+              <div>Loading....</div>
+            ) : (
+              <ChartTotal arrayTotalKendaran={dataKendaraan} />
+            )}
+          </div>
         </div>
-      </div>
-      <div className="row-start-4">
-        <a href="/user-management" className="btn btn-wide">
-          Go to User Management
-        </a>
-      </div>
-      <div className="row-start-4">
-        <a href="/analisis-management" className="btn btn-wide">
-          Go to Analisis Management
-        </a>
-      </div>
-      <div className="row-start-4">
-        <a href="/kendaraan-management" className="btn btn-wide">
-          Go to Kendaraan Management
-        </a>
+        <div className="flex flex-col space-y-4 lg:flex-row lg:space-y-0 lg:space-x-4 lg:col-span-3">
+          <a href="/user-management" className="btn btn-wide flex-1">
+            Go to User Management
+          </a>
+          <a href="/analisis-management" className="btn btn-wide flex-1">
+            Go to Analisis Management
+          </a>
+          <a href="/kendaraan-management" className="btn btn-wide flex-1">
+            Go to Kendaraan Management
+          </a>
+        </div>
       </div>
     </div>
   );
