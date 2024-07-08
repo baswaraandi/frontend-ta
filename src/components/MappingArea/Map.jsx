@@ -211,7 +211,7 @@ function MapComponent() {
         </div>
       </div>
       <div className="flex flex-col items-center ml-6">
-        <div className="mt-10">
+        <div className="mt-12">
           <details className="dropdown dropdown-end">
             <summary className="m-1 btn w-56">Filter Kendaraan</summary>
             <ul className="p-2 shadow poin dropdown-content z-[1] bg-base-100 rounded-box w-56 max-h-96 overflow-y-scroll">

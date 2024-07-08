@@ -2,12 +2,16 @@ import { useState, useEffect } from "react";
 import ChartTotal from "../components/Admin/ChartTotal";
 import Carousel from "../components/Carrousel";
 import backendApi from "../utils/api-config";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function HomePage() {
   const [dataKendaraan, setDataKendaraan] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    AOS.init();
+
     const fetchData = async () => {
       try {
         const response = await backendApi.get("/total-kendaraan");
@@ -22,8 +26,8 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="grid grid-cols-4 grid-rows-6 m-2 gap-4">
-      <div className="card bg-base-100 shadow-xl row-span-3">
+    <div className="grid grid-cols-4 grid-rows-6 m-2 gap-4 sm:col-span-1">
+      <div className="card bg-base-100 shadow-xl row-span-3" data-aos="fade-up">
         <figure>
           <img
             src="https://th.bing.com/th/id/OIP.vjmhQMrKzadHoPWz9tsfCQHaEu?rs=1&pid=ImgDetMain"
@@ -42,13 +46,15 @@ function HomePage() {
           </div>
         </div>
       </div>
-      <div className="card bg-blue-950 shadow-xl p-4 h-36">
+      <div className="card bg-blue-950 shadow-xl p-4 h-36" data-aos="fade-up">
         <div className="avatar">
           <div className="w-24 rounded-full h-24">
             <img src="https://media.licdn.com/dms/image/D5603AQE0AtsFkVyQ0Q/profile-displayphoto-shrink_100_100/0/1696408634855?e=1723680000&v=beta&t=bx2SIwdXWQiWZiLBAvLTq20nHFmUbgGetjX-DN1t-ZA" />
           </div>
           <div className="ml-4">
-            <h2 className="font-semibold mb-2 text-white">Andyka Baswara Putra</h2>
+            <h2 className="font-semibold mb-2 text-white">
+              Andyka Baswara Putra
+            </h2>
             <p className="mb-3 text-white">140810200061</p>
             <div className="card-actions justify-start">
               <div className="badge badge-outline text-white">Mahasiswa</div>
@@ -56,7 +62,10 @@ function HomePage() {
           </div>
         </div>
       </div>
-      <div className="card bg-base-100 shadow-xl p-4 h-36 col-start-2 row-start-2">
+      <div
+        className="card bg-base-100 shadow-xl p-4 h-36 col-start-2 row-start-2"
+        data-aos="fade-up"
+      >
         <div className="avatar">
           <div className="w-24 rounded-full h-24">
             <img src="https://v2-students.unpad.ac.id/_next/image?url=https%3A%2F%2Fmedia.unpad.ac.id%2Fphoto%2Fpegawai%2F197607232008121001.jpg&w=64&q=75" />
@@ -70,7 +79,10 @@ function HomePage() {
           </div>
         </div>
       </div>
-      <div className="card bg-base-100 shadow-xl p-4 h-36 col-start-2 row-start-3">
+      <div
+        className="card bg-base-100 shadow-xl p-4 h-36 col-start-2 row-start-3"
+        data-aos="fade-up"
+      >
         <div className="avatar">
           <div className="w-24 rounded-full h-24">
             <img src="https://v2-students.unpad.ac.id/_next/image?url=https%3A%2F%2Fmedia.unpad.ac.id%2Fphoto%2Fpegawai%2F196704031993031002.jpg&w=64&q=75" />
@@ -84,17 +96,26 @@ function HomePage() {
           </div>
         </div>
       </div>
-      <div className="card bg-base-100 shadow-xl col-span-2 row-span-3 col-start-1 row-start-4 place-content-center p-5">
+      <div
+        className="card bg-base-100 shadow-xl col-span-2 row-span-3 col-start-1 row-start-4 place-content-center p-5"
+        data-aos="fade-up"
+      >
         {loading === true ? (
           <div>Loading....</div>
         ) : (
           <ChartTotal arrayTotalKendaran={dataKendaraan} />
         )}
       </div>
-      <div className="card bg-base-100 shadow-xl row-span-3 col-start-3 row-start-1 place-content-center h-full">
+      <div
+        className="card bg-base-100 shadow-xl row-span-3 col-start-3 row-start-1 place-content-center h-full"
+        data-aos="fade-up"
+      >
         <Carousel />
       </div>
-      <div className="card bg-base-100 shadow-xl col-span-2 row-span-3 col-start-3 row-start-4 place-content-center overflow-x-scroll p-8">
+      <div
+        className="card bg-base-100 shadow-xl col-span-2 row-span-3 col-start-3 row-start-4 place-content-center overflow-x-scroll p-8"
+        data-aos="fade-up"
+      >
         <h2 className="font-bold place-self-center card-title sticky left-1/2 transform -translate-x-1/2 mb-8">
           FITUR
         </h2>
@@ -200,7 +221,10 @@ function HomePage() {
           </li>
         </ul>
       </div>
-      <div className="card bg-base-100 shadow-xl row-span-3 col-start-4 row-start-1 p-4">
+      <div
+        className="card bg-base-100 shadow-xl row-span-3 col-start-4 row-start-1 p-4"
+        data-aos="fade-up"
+      >
         <div className="chat chat-start">
           <div className="chat-bubble">
             Saya ingin melihat peta kendaraan di Kota Bandung.

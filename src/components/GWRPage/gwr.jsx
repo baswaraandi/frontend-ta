@@ -5,11 +5,18 @@ import ParameterTable from "./Parameter";
 import TabelAdaptiveBw from "./TabelAdaptiveBw";
 import TabelAnalisis from "./TabelAnalisis";
 import TabelFixedBw from "./TabelFixedBw";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const GWRResult = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <div className="grid grid-cols-4 grid-rows-6 gap-4 p-4">
-      <div className="card bg-base-100 shadow-xl col-span-2 row-span-2 p-4 max-h-screen">
+      <div className="card bg-base-100 shadow-xl col-span-2 row-span-2 p-4 max-h-screen" data-aos="fade-up">
         <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
           <li>
             <div className="timeline-middle">
@@ -118,7 +125,7 @@ const GWRResult = () => {
           </li>
         </ul>
       </div>
-      <div className="card bg-blue-950 col-start-3 shadow-xl p-4 max-h-[450px]">
+      <div className="card bg-blue-950 col-start-3 shadow-xl p-4 max-h-[450px]" data-aos="fade-up">
         <h2 className="font-bold text-white text-2xl">Bandwith</h2>
         <div className="overflow-x-auto">
           <table className="table text-white">
@@ -138,15 +145,15 @@ const GWRResult = () => {
         </div>
         <img src="" alt="" />
       </div>
-      <div className="card bg-base-10 col-start-3 shadow-xl row-start-2 p-4 overflow-y-auto max-h-[450px]">
+      <div className="card bg-base-10 col-start-3 shadow-xl row-start-2 p-4 overflow-y-auto max-h-[450px]" data-aos="fade-up">
         <h2 className="font-bold text-2xl">Estimasi Parameter</h2>
         <ParameterTable />
       </div>
-      <div className="card bg-base-10 col-start-4 shadow-xl row-start-1 p-4 max-h-[450px]">
+      <div className="card bg-base-10 col-start-4 shadow-xl row-start-1 p-4 max-h-[450px]" data-aos="fade-up">
         <h2 className="font-bold text-2xl">Uji Kecocokan Model</h2>
         <ModelTable />
       </div>
-      <div className="card bg-blue-950 col-start-4 shadow-xl row-start-2 p-4 max-h-[450px]">
+      <div className="card bg-blue-950 col-start-4 shadow-xl row-start-2 p-4 max-h-[450px]" data-aos="fade-up">
         <h2 className="font-bold text-2xl text-white">
           Pemilihan Model Terbaik
         </h2>

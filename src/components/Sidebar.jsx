@@ -34,7 +34,7 @@ function SidebarComponent() {
             {isSidebarOpen && <span className="ml-2 font-medium">Home</span>}
           </div>
         </MenuItem>
-        {user.role === "admin" && (
+        {user.role != "mahasiswa" && (
           <MenuItem
             className="py-2 items-center"
             component={<Link to="/admin" />}

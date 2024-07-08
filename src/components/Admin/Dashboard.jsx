@@ -1,12 +1,16 @@
 import ChartTotal from "./ChartTotal";
 import { useEffect, useState } from "react";
 import backendApi from "../../utils/api-config";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Dashboard() {
   const [dataKendaraan, setDataKendaraan] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    AOS.init();
+
     const fetchData = async () => {
       try {
         const response = await backendApi.get("/total-kendaraan");
@@ -33,13 +37,25 @@ function Dashboard() {
           </div>
         </div>
         <div className="flex flex-col space-y-4 lg:flex-row lg:space-y-0 lg:space-x-4 lg:col-span-3">
-          <a href="/user-management" className="btn btn-wide flex-1">
+          <a
+            href="/user-management"
+            className="btn btn-wide flex-1"
+            data-aos="fade-up"
+          >
             Go to User Management
           </a>
-          <a href="/analisis-management" className="btn btn-wide flex-1">
+          <a
+            href="/analisis-management"
+            className="btn btn-wide flex-1"
+            data-aos="fade-up"
+          >
             Go to Analisis Management
           </a>
-          <a href="/kendaraan-management" className="btn btn-wide flex-1">
+          <a
+            href="/kendaraan-management"
+            className="btn btn-wide flex-1"
+            data-aos="fade-up"
+          >
             Go to Kendaraan Management
           </a>
         </div>

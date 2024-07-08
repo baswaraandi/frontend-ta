@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import backendApi from "../../utils/api-config";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Register() {
   const [fullname, setFullname] = useState("");
@@ -11,10 +13,16 @@ function Register() {
   const [role, setRole] = useState("Mahasiswa");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+      setLoading(true);
       const response = await backendApi.post("/register", {
         username,
         email,
@@ -24,17 +32,22 @@ function Register() {
       });
       if (response.status === 200) {
         navigate("/login");
-        toast.success("Registration Success!")
+        toast.success("Registration Success!");
       }
       console.log(response.data.data);
     } catch (error) {
       console.log("Error! Registration failed.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+      <div
+        className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md"
+        data-aos="fade-up"
+      >
         <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -120,12 +133,37 @@ function Register() {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+            className="btn btn-wide w-full flex justify-center items-center"
+            disabled={loading}
+            data-aos="fade-up"
           >
-            Register
+            {loading ? (
+              <svg
+                className="animate-spin h-5 w-5 mr-3 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C6.477 0 0 6.477 0 12h4z"
+                ></path>
+              </svg>
+            ) : (
+              "Register"
+            )}
           </button>
         </form>
-        <ToastContainer/>
+        <ToastContainer />
       </div>
     </div>
   );
