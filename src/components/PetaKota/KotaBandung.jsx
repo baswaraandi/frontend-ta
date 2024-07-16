@@ -126,8 +126,8 @@ function KotaBandungMapComponent() {
   const onEachFeature = useCallback(
     (feature, layer) => {
       const kecamatanName = feature.properties.nama_kecamatan;
-      const jumlahKendaraan = feature.properties.dataKendaraan;
-      const popupContent = `<b>Kecamatan:</b> ${kecamatanName} <br><br/> <b>Jumlah:</b> ${jumlahKendaraan}`;
+      // const jumlahKendaraan = feature.properties.dataKendaraan;
+      const popupContent = `<b>Kecamatan:</b> ${kecamatanName}`;
       layer.bindPopup(popupContent);
     },
     [dataKendaraan]
