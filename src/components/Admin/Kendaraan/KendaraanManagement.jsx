@@ -20,7 +20,7 @@ function KendaraanManagement() {
     getKendaraan(page, 20);
   }, [page]);
 
-  const getKendaraan = async (page = 1, limit = 10, tipe) => {
+  const getKendaraan = async (page = 1, limit = 10, searchQuery = '') => {
     try {
       const token = Cookies.get("token");
       if (!token) {
@@ -32,7 +32,7 @@ function KendaraanManagement() {
           "Content-Type": "application/json",
         },
         params: {
-          tipe: tipe || null,
+          search: searchQuery,
           page: page,
           limit: limit,
         },
@@ -118,13 +118,13 @@ function KendaraanManagement() {
                     value={search}
                     onChange={handleSearchChange}
                     className="input input-bordered flex items-center gap-2"
-                    placeholder="Search by type"
+                    placeholder="Cari Data"
                   />
                   <button
                     type="submit"
                     className="ml-4 btn btn-outline btn-primary"
                   >
-                    Search
+                    Cari
                   </button>
                 </form>
                 <button
