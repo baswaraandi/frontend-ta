@@ -28,4 +28,17 @@ Proyek ini adalah sebuah Sistem Informasi Geografis (SIG) berbasis web yang bert
 
 1. Clone repository ini:
    ```bash
-   git clone https://github.com/username/repo-name.git
+   git clone https://github.com/baswaraandi/frontend-ta
+
+2. Install depedencies untuk Frontend
+   ```bash
+   cd frontend-ta
+   npm install
+
+3. Jalankan aplikasi
+   ```bash
+   npm start
+
+## Pengujian
+- **Black-box Testing**: Menghasilkan nilai rata-rata keberhasilan sebesar 96,86% dengan tingkat akurasi sangat akurat berdasarkan MAPE.
+- **System Usability Scale (SUS)**: Menghasilkan skor akhir 78,39 yang masuk dalam kriteria skor C berdasarkan huruf dan excellent berdasarkan kata sifat.
